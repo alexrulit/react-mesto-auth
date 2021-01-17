@@ -1,13 +1,13 @@
 # Место REACT
 
 ## Описание
-Проектная работа 10. Codename: REACT
+Проектная работа 14. Codename: REACT Auth
 
 ## GH PAGES
 https://alexrulit.github.io/mesto-react/
 
 ## Функциональность
-Получение данных из API.
+Получение данных из API. Авторизация.
 
 ## Что используется
 1. HTML
@@ -26,6 +26,7 @@ https://alexrulit.github.io/mesto-react/
 4. Просмотр картинок
 5. Валидация форм
 6. Продвинутый UI
+7. Авторизация
 
 ## Системный требования
 * OS: Windows, Linux, Mac, Android, IOS.
