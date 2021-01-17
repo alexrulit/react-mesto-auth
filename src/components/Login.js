@@ -30,8 +30,6 @@ function Login(props) {
                 setEmail('');
                 setPassword('');
                 props.handleLogin();
-                props.history.push('/');
-            
             }  
         })
         .catch(err => console.log(err)); 
