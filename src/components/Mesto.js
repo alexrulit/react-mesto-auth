@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import Header from './Header';
 import Main from './Main';
-import Footer from './Footer';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -10,15 +7,13 @@ import AddPlacePopup from './AddPlacePopup';
 import api from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function Mesto(props) {
+function Mesto() {
   const [currentUser, setCurrentUser] = useState({});
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [cards, setCards] = useState([]);
-  const history = useHistory();
-  const email = props.userData.email;
 
   React.useEffect(() => {
    Promise.all([api.getUserInfo(), api.getInitialCards()]) 
@@ -111,19 +106,9 @@ function Mesto(props) {
     });
   }
 
-  function signOut(){
-    localStorage.removeItem('jwt');
-    history.push('/sign-in');
-  }
-
   return (
         <CurrentUserContext.Provider value={currentUser}>
-          <Header>
-            <p className="header__email">{email}</p>
-            <a href="" className="header__link" onClick={signOut}>Выйти</a>
-          </Header>
           <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} onCardLike={handleCardLike} onCardDelete={handleCardDelete} cardList={cards} />
-          <Footer />
           <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
           <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlace} />
           <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />

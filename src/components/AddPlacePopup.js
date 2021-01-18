@@ -25,9 +25,9 @@ function AddPlacePopup(props) {
 
     return(
         <PopupWithForm name="addcard" title="Новое место" isOpen={props.isOpen} onClose={props.onClose} onSubmit={handleSubmit}>
-            <input id="popupName" name="name" type="text" onChange={handleChangeName} className="popup__input" placeholder="Название" minLength="1" maxLength="30" required />
+            <input id="popupName" name="name" type="text" value={name} onChange={handleChangeName} className="popup__input" placeholder="Название" minLength="1" maxLength="30" required />
             <span id="popupName-error" className="popup__input-error"></span>
-            <input id="popupLink" name="link" type="url" onChange={handleChangeLink} className="popup__input" placeholder="Ссылка на картинку" required />
+            <input id="popupLink" name="link" type="url" value={link} onChange={handleChangeLink} className="popup__input" placeholder="Ссылка на картинку" required />
             <span id="popupLink-error" className="popup__input-error"></span>
         </PopupWithForm>
     )

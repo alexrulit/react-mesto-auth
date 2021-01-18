@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Header from './Header';
-import { Link, withRouter } from 'react-router-dom';
-import * as mestoAuth from './mestoAuth';
+import { withRouter } from 'react-router-dom';
 
 
 function Login(props) {
@@ -23,28 +21,17 @@ function Login(props) {
         if (!email || !password){
             return;
         }
-
-        mestoAuth.authorize(password, email)
-        .then((data) => {
-            if (data.token){
-                setEmail('');
-                setPassword('');
-                props.handleLogin();
-            }  
-        })
-        .catch(err => console.log(err)); 
+        
+        props.handleLogin(password, email);
     
     }
 
     return(
         <div>
-            <Header>
-                <a href="/sign-up" className="header__link">Регистрация</a>
-            </Header>
             <form name="main-form" action="#" className="main-form" noValidate onSubmit={handleSubmit}>
                 <h2 className="main-form__title">Вход</h2>
-                <input type="text" name="email" type="email" onChange={handleChangeEmail} className="main-form__input" placeholder="Email"/>
-                <input type="password" name="password" type="password" onChange={handleChangePassword} className="main-form__input" placeholder="Пароль"/>
+                <input name="email" type="email" value={email} onChange={handleChangeEmail} className="main-form__input" placeholder="Email"/>
+                <input name="password" type="password" value={password} onChange={handleChangePassword} className="main-form__input" placeholder="Пароль"/>
                 <button type="submit" name="submit" className="main-form__button">Войти</button>
             </form>
         </div>
