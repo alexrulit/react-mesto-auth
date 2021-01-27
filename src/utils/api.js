@@ -1,13 +1,13 @@
 class Api {
     constructor(options){
       this._baseUrl = options.baseUrl;
-      this._token = options.headers.authorization;
+      this._token = options.headers.token;
       this._contentType = options.headers.contentType;
     }
   
     _sendRequest(endpoint, method, body){
       this._headers = {
-          authorization: this._token,
+          'Authorization': `Bearer ${this._token}`,
           'Content-type': this._contentType
       };
       this._requestInit = {
@@ -25,6 +25,10 @@ class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       });
     }
+
+    setToken(token) {
+      this._token = token;
+    } 
   
     getUserInfo() {
       return this._sendRequest('/users/me', 'GET', {});
@@ -70,9 +74,9 @@ class Api {
   }
   
   const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14',
+    baseUrl: 'http://localhost:3001',
     headers: {
-      authorization: '67d49140-f28d-4665-8757-80e700844f4c',
+      token: localStorage.getItem('jwt'),
       contentType: 'application/json'
     }
   });
